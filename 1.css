@@ -1,0 +1,13 @@
+.checkout {
+    margin-top: 20px;
+}
+
+.checkout h2, .checkout h3 {
+    margin: 10px 0;
+}
+
+.payment-item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px 0;
+}

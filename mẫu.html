@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Bán Hàng</title>
+    <link rel="stylesheet" href="1.css">
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Danh Sách Sản Phẩm</h1>
+        <div id="product-list" class="product-list">
+            <!-- Sản phẩm sẽ được chèn vào đây bởi JavaScript -->
+        </div>
+        <div class="pagination">
+            <button id="prev-btn">« Trang Trước</button>
+            <span id="page-numbers"></span>
+            <button id="next-btn">Trang Sau »</button>
+        </div>
+        <div class="checkout">
+            <h2>Tổng Số Tiền: <span id="total-amount">0</span> VND</h2>
+            <h3>Các Mục Thanh Toán</h3>
+            <div id="payment-items"></div>
+        </div>
+    </div>
+    <script src="script.js">
+        const products = [
+    { name: "Sản phẩm 1", price: 10000 },
+    { name: "Sản phẩm 2", price: 20000 },
+    { name: "Sản phẩm 3", price: 15000 },
+    { name: "Sản phẩm 4", price: 30000 },
+    { name: "Sản phẩm 5", price: 25000 },
+    { name: "Sản phẩm 6", price: 35000 },
+    { name: "Sản phẩm 7", price: 40000 },
+    { name: "Sản phẩm 8", price: 50000 },
+    { name: "Sản phẩm 9", price: 60000 },
+    { name: "Sản phẩm 10", price: 70000 },
+    { name: "Sản phẩm 11", price: 80000 },
+    { name: "Sản phẩm 12", price: 90000 }
+];
+
+const productsPerPage = 4;
+let currentPage = 1;
+
+function displayProducts(page) {
+    const start = (page - 1) * productsPerPage;
+    const end = start + productsPerPage;
+    const productsToDisplay = products.slice(start, end);
+
+    const productList = document.getElementById('product-list');
+    productList.innerHTML = '';
+
+    productsToDisplay.forEach(product => {
+        const productDiv = document.createElement('div');
+        productDiv.className = 'product';
+        productDiv.textContent = `${product.name} - ${product.price} VND`;
+        productList.appendChild(productDiv);
+    });
+
+    updateTotalAmount(productsToDisplay);
+}
+
+function setupPagination() {
+    const pageNumbers = document.getElementById('page-numbers');
+    const totalPages = Math.ceil(products.length / productsPerPage);
+    
+    pageNumbers.innerHTML = '';
+    
+    for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement('button');
+        button.textContent = i;
+        button.addEventListener('click', () => {
+            currentPage = i;
+            displayProducts(currentPage);
+            updatePaginationButtons();
+        });
+        pageNumbers.appendChild(button);
+    }
+}
+
+function updatePaginationButtons() {
+    document.getElementById('prev-btn').disabled = currentPage === 1;
+    document.getElementById('next-btn').disabled = currentPage === Math.ceil(products.length / productsPerPage);
+}
+
+function updateTotalAmount(productsToDisplay) {
+    const totalAmount = productsToDisplay.reduce((total, product) => total + product.price, 0);
+    document.getElementById('total-amount').textContent = totalAmount.toLocaleString('vi-VN');
+    
+    const paymentItems = document.getElementById('payment-items');
+    paymentItems.innerHTML = '';
+    
+    productsToDisplay.forEach(product => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'payment-item';
+        itemDiv.textContent = `${product.name}: ${product.price.toLocaleString('vi-VN')} VND`;
+        paymentItems.appendChild(itemDiv);
+    });
+}
+
+document.getElementById('prev-btn').addEventListener('click', () => {
+    if (currentPage > 1) {
+        currentPage--;
+        displayProducts(currentPage);
+        updatePaginationButtons();
+    }
+});
+
+document.getElementById('next-btn').addEventListener('click', () => {
+    if (currentPage < Math.ceil(products.length / productsPerPage)) {
+        currentPage++;
+        displayProducts(currentPage);
+        updatePaginationButtons();
+    }
+});
+
+displayProducts(currentPage);
+setupPagination();
+updatePaginationButtons();
+
+    </script>
+    
+</body>
+</html>

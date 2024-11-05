@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nguyễn Hoàng Chí Anh</title>
+  <!-- Link to Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .checkout-container {
+      max-width: 960px;
+      margin: 50px auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Checkout Container -->
+  <div class="checkout-container">
+    <h2 class="mb-4">đơn hàng</h2>
+    <div class="row">
+      <!-- Customer Information and Shipping Address -->
+      <div class="col-md-8">
+        <form>
+          <div class="mb-3">
+            <label for="firstName" class="form-label">Tên</label>
+            <input type="text" class="form-control" id="firstName" placeholder="" required>
+          </div>
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Họ tên</label>
+            <input type="text" class="form-control" id="Fullname" placeholder="" required>
+          </div>
+          <div class="mb-3">
+            <label for="lastName" class="form-label">tiền cọc(Deposit)</label>
+            <input type="text" class="form-control" id="Deposit" placeholder="" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="admin@example.com" required>
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">địa chỉ</label>
+            <input type="text" class="form-control" id="address" placeholder="164/a/1/b" required>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="country" class="form-label">Tỉnh,Thành phố</label>
+              <select class="form-select" id="country" required>
+                <option value="">cần chọn</option>
+                <option>Thành Phố Hồ Chi Minh</option>
+                <option>Bà Rịa Vũng Tàu</option>
+                <option>Đồng Nai</option>
+                <option>Cà Mau</option>
+                <option>Nha Trang</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="state" class="form-label">Quận,Huyện</label>
+              <select class="form-select" id="state" required>
+                <option value="">cần chọn</option>
+                <option>Gò Vấp</option>
+                <option>Tân PHú</option>
+                <option>Bình Tân</option>
+                <option>Tân Thạch</option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="zip" class="form-label">Số điện thoại</label>
+            <input type="text" class="form-control" id="zip" placeholder="" required>
+          </div>
+          <hr class="my-4">
+          
+          <!-- Payment Method -->
+          <h4 class="mb-3">Phương thức thanh toán</h4>
+          <div class="my-3">
+            <div class="form-check">
+              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+              <label class="form-check-label" for="credit">Thẻ tính dụng</label>
+            </div>
+            <div class="form-check">
+              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="debit">tiền mặt</label>
+            </div>
+            <div class="form-check">
+              <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="paypal">Thẻ ngân hàng</label>
+            </div>
+          </div>
+          <div class="row gy-3">
+            <div class="col-md-6">
+              <label for="cc-name" class="form-label">loại thẻ</label>
+              <input type="text" class="form-control" id="cc-name" placeholder="" required>
+              <small class="text-muted">tên ngân hàng</small>
+            </div>
+            <div class="col-md-6">
+              <label for="cc-number" class="form-label">số thẻ</label>
+              <input type="text" class="form-control" id="cc-number" placeholder="" required>
+            </div>
+            <div class="col-md-3">
+              <label for="cc-expiration" class="form-label">lick</label>
+              <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+            </div>
+            <div class="col-md-3">
+              <label for="cc-cvv" class="form-label">CVV</label>
+              <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+            </div>
+          </div>
+          <hr class="my-4">
+          <button class="w-100 btn btn-primary btn-lg" type="submit">xác nhận</button>
+        </form>
+      </div>
+      
+      <!-- Order Summary -->
+      <div class="col-md-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted">giá tiền</span>
+          <span class="badge bg-secondary rounded-pill">mặt hàng chọn:1</span>
+        </h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Tên mặt hàng:</h6>
+              <small class="text-muted">chevrolet camaro za100</small>
+            </div>
+            <span class="text-muted">cần thanh toán:Tiền xe</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>thành tiền</span>
+            <strong>tổng:2.550.000.000</strong>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
